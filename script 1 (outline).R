@@ -3,4 +3,12 @@
 #     this will include pivots, filter, group_by, etc.
 #model the data
 #graph (show and explain)
-#hello
+
+#import data
+chick_fil_a_data <- read_csv("/Users/lucasberth/Documents/Coding Docs/DSAA---Project/chick-fil-a-nutrition.csv")
+
+head(chick_fil_a_data)
+
+top5size <- chick_fil_a_data %>%
+  filter("Serving size")
+  
