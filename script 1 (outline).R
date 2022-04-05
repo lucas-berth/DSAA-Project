@@ -10,5 +10,6 @@ chick_fil_a_data <- read_csv("/Users/lucasberth/Documents/Coding Docs/DSAA---Pro
 head(chick_fil_a_data)
 
 top5size <- chick_fil_a_data %>%
-  filter("Serving size")
+  select(`Serving size`, Menu) %>%
+  slice(2)
   
