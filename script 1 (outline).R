@@ -6,8 +6,10 @@
 
 #import data
 chick_fil_a_data <- read_csv("/Users/lucasberth/Documents/Coding Docs/DSAA---Project/chick-fil-a-nutrition.csv")
+chick_fil_a_data_jocelyn <- read_csv("C:/Users/apple/OneDrive/Documents/Coding 2/DSAA-Project/chick-fil-a-nutrition.csv")
 
 head(chick_fil_a_data)
+head(chick_fil_a_data_jocelyn)
 
 chick_fil_a_data %>%
   separate('Serving size', into = "Serving Size(g)", sep = 'g')
