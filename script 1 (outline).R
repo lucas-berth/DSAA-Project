@@ -11,16 +11,13 @@ chick_fil_a_data_jocelyn <- read_csv("C:/Users/apple/OneDrive/Documents/Coding 2
 head(chick_fil_a_data)
 head(chick_fil_a_data_jocelyn)
 
-chick_fil_a_data %>%
-  separate('Serving size', into = "Serving Size(g)", sep = 'g')
 
-#still figuring out how to get the g off the number in the serving size column
+#I do not think this one is working still
 top5size <- chick_fil_a_data %>%
-  separate('Serving size', into = "Serving Size(g)", sep = 'g') %>%
-  data_frame("Serving Size(g)" = numeric()) %>%
-  select("Menu", "Serving Size(g)") %>%
-  arrange(desc("Serving Size(g)")) %>%
-  slice(5)
+  mutate(Serving size (G) = numeric) %>%
+  select("Menu", "Serving size (G)") %>%
+  arrange(desc("Serving size (G)")) %>%
+  slice(1:5)
   
 
 
