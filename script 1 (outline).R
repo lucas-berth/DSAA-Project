@@ -12,19 +12,24 @@ head(chick_fil_a_data)
 head(chick_fil_a_data_2)
 
 
-#I do not think this one is working still
-top5size <- chick_fil_a_data %>%
-  mutate(Serving size (G) = numeric) %>%
-  select("Menu", "Serving size (G)") %>%
-  arrange(desc("Serving size (G)")) %>%
+#I think this is correct answer for question 1 on top 5 protein
+top5size <- chick_fil_a_nutrition%>%
+  select(Menu, `Protein (G)`, `Serving size`)%>%
+  arrange(desc(`Protein (G)`))%>%
   slice(1:5)
-  
+top5size
+
 
 
 #question 2
-chick_fil_a_data %>%
+chick_fil_a_nutrition %>%
   select(Menu, Calories, `Sugar (G)`) %>%
   arrange(desc(Calories)) %>%
+  slice(1:5)
+
+chick_fil_a_nutrition %>%
+  select(Menu, Protein (G), `Serving size`)%>%
+  arrange(desc(Protein (G)))%>%
   slice(1:5)
 
 #trying a regression // problem with this one 
@@ -40,6 +45,13 @@ summary(model2)
 
 #Min = -180.71; 1Q = -29.73; Median = -2.01; 3Q = 22.69; Max = 362.44
 #Calories = -4.16 + 9.92(Fat) + 0.04(Sodium) + 4.08(Sugar) + 5.11(Protein)
+
+top5protein<-chick_fil_a_nutrition %>%
+
+summarize("Protein (G)")%>%
+ungroup()%>%
+arrange(-"Protein (G)")
+top5protein
 
 
 
