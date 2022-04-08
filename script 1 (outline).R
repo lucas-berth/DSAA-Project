@@ -33,13 +33,26 @@ chick_fil_a_data %>%
   ggplot(aes("Protein (G)", "Calories")) +
   geom_point()
   
-  
-#multiple regression
-model2 <- lm(Calories ~ `Fat (G)` + `Sodium (MG)` + `Sugar (G)` + `Protein (G)`, data=chick_fil_a_data_2)
-summary(model2)
+#simple regression
+model1 <- lm(`Protein (G)` ~ Calories, data=chick_fil_a_data_2)
+summary(model1)
+#Min = -79.93; 1Q = -5.58; Median = 1.08; 3Q = 8.998; Max = 62.53
+#Protein = 0.422 + 0.04(Calories)
+#R^2 = .76
 
-#Min = -180.71; 1Q = -29.73; Median = -2.01; 3Q = 22.69; Max = 362.44
-#Calories = -4.16 + 9.92(Fat) + 0.04(Sodium) + 4.08(Sugar) + 5.11(Protein)
+#graphing simple regression
+model1 %>%
+  ggplot(aes(`Protein (G)`, Calories)) +
+  geom_point()
+#there are a few outliers, and it doesn't look linear
+
+    
+#multiple regression
+model2 <- lm(`Protein (G)` ~ Calories + `Fat (G)` + `Sodium (MG)` + `Sugar (G)`, data=chick_fil_a_data_2)
+summary(model2)
+#Min = -20.43; 1Q = -3.36; Median = -1.89; 3Q = 3.87; Max = 21.6
+#Protein = 2.56 + 0.06(Calories) - 0.64(Fat) + 0.01(Sodium) - 0.25(Sugar)
+#R^2 adj. = .966
 
 
 
