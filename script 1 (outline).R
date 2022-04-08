@@ -6,10 +6,10 @@
 
 #import data
 chick_fil_a_data <- read_csv("/Users/lucasberth/Documents/Coding Docs/DSAA---Project/chick-fil-a-nutrition.csv")
-chick_fil_a_data_jocelyn <- read_csv("C:/Users/apple/OneDrive/Documents/Coding 2/DSAA-Project/chick-fil-a-nutrition.csv")
+chick_fil_a_data_2 <- read_csv("C:/Users/apple/OneDrive/Documents/Coding 2/DSAA-Project/chick-fil-a-nutrition.csv")
 
 head(chick_fil_a_data)
-head(chick_fil_a_data_jocelyn)
+head(chick_fil_a_data_2)
 
 
 #I do not think this one is working still
@@ -34,5 +34,12 @@ chick_fil_a_data %>%
   geom_point()
   
   
-#Blake
+#multiple regression
+model2 <- lm(Calories ~ `Fat (G)` + `Sodium (MG)` + `Sugar (G)` + `Protein (G)`, data=chick_fil_a_data_2)
+summary(model2)
+
+#Min = -180.71; 1Q = -29.73; Median = -2.01; 3Q = 22.69; Max = 362.44
+#Calories = -4.16 + 9.92(Fat) + 0.04(Sodium) + 4.08(Sugar) + 5.11(Protein)
+
+
 
