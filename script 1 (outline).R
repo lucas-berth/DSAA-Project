@@ -45,6 +45,7 @@ summary(model1)
 #Protein = 0.422 + 0.04(Calories)
 #R^2 = .76
 
+
 #graphing simple regression
 model1 %>%
   ggplot(aes(`Protein (G)`, Calories)) +
