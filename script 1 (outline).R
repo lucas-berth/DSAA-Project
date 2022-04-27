@@ -4,6 +4,9 @@
 #model the data
 #graph (show and explain)
 
+#load library 
+library(tidyverse)
+
 #import data
 chick_fil_a_data <- read_csv("/Users/lucasberth/Documents/Coding Docs/DSAA---Project/chick-fil-a-nutrition.csv")
 chick_fil_a_data_2 <- read_csv("C:/Users/apple/OneDrive/Documents/Coding 2/DSAA-Project/chick-fil-a-nutrition.csv")
@@ -13,7 +16,7 @@ head(chick_fil_a_data_2)
 
 
 #I think this is correct answer for question 1 on top 5 protein
-top5size <- chick_fil_a_nutrition%>%
+top5size <- chick_fil_a_data%>%
   select(Menu, `Protein (G)`, `Serving size`)%>%
   arrange(desc(`Protein (G)`))%>%
   slice(1:5)
@@ -22,24 +25,14 @@ top5size
 
 
 #question 2
-chick_fil_a_nutrition %>%
-  select(Menu, Calories, `Sugar (G)`) %>%
+chick_fil_a_data %>%
+  select(Menu, Calories, `Protein (G)`) %>%
   arrange(desc(Calories)) %>%
   slice(1:5)
 
-chick_fil_a_nutrition %>%
-  select(Menu, Protein (G), `Serving size`)%>%
-  arrange(desc(Protein (G)))%>%
-  slice(1:5)
-
-#trying a regression // problem with this one 
-chick_fil_a_data %>%
-  filter()
-  ggplot(aes("Protein (G)", "Calories")) +
-  geom_point()
   
 #simple regression
-model1 <- lm(`Protein (G)` ~ Calories, data=chick_fil_a_data_2)
+model1 <- lm(`Protein (G)` ~ Calories, data=chick_fil_a_data)
 summary(model1)
 #Min = -79.93; 1Q = -5.58; Median = 1.08; 3Q = 8.998; Max = 62.53
 #Protein = 0.422 + 0.04(Calories)
@@ -50,22 +43,3 @@ summary(model1)
 model1 %>%
   ggplot(aes(`Protein (G)`, Calories)) +
   geom_point()
-#there are a few outliers, and it doesn't look linear
-
-    
-#multiple regression
-model2 <- lm(`Protein (G)` ~ Calories + `Fat (G)` + `Sodium (MG)` + `Sugar (G)`, data=chick_fil_a_data_2)
-summary(model2)
-#Min = -20.43; 1Q = -3.36; Median = -1.89; 3Q = 3.87; Max = 21.6
-#Protein = 2.56 + 0.06(Calories) - 0.64(Fat) + 0.01(Sodium) - 0.25(Sugar)
-#R^2 adj. = .966
-
-top5protein<-chick_fil_a_nutrition %>%
-
-summarize("Protein (G)")%>%
-ungroup()%>%
-arrange(-"Protein (G)")
-top5protein
-
-
-
