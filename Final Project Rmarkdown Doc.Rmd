@@ -1,39 +1,59 @@
+---
+title: "Chick Fil A Data Analysis"
+author: "Lucas Berth, Jocelyn Apple, Blake Breon"
+date: "4/27/2022"
+output: word_document
+---
 
-#load library 
+```{r}
 library(tidyverse)
+library(broom)
+```
 
-#import data
+
+Importing data
+```{r}
 chick_fil_a_data <- read_csv("/Users/lucasberth/Documents/Coding Docs/DSAA---Project/chick-fil-a-nutrition.csv")
-chick_fil_a_data_2 <- read_csv("C:/Users/apple/OneDrive/Documents/Coding 2/DSAA-Project/chick-fil-a-nutrition.csv")
+```
 
+
+Looking/Examining Data
+```{r}
 head(chick_fil_a_data)
-head(chick_fil_a_data_2)
+```
 
-#I think this is correct answer for question 1 on top 5 protein
+
+Question #1 - Determine top 5 protein items on the menu
+```{r}
 top5size <- chick_fil_a_data%>%
   select(Menu, `Protein (G)`, `Serving size`)%>%
   arrange(desc(`Protein (G)`))%>%
   slice(1:5)
 top5size
+```
 
 
-
-#question 2
+Question #2 - Determine top 5 calorie items on the menu
+```{r}
 chick_fil_a_data %>%
   select(Menu, Calories, `Protein (G)`) %>%
   arrange(desc(Calories)) %>%
   slice(1:5)
+```
 
-  
-#simple regression
+
+Simple Regression
+```{r}
 model1 <- lm(`Protein (G)` ~ Calories, data=chick_fil_a_data)
 summary(model1)
-#Min = -79.93; 1Q = -5.58; Median = 1.08; 3Q = 8.998; Max = 62.53
-#Protein = 0.422 + 0.04(Calories)
-#R^2 = .76
+```
 
 
-#graphing simple regression
+Graphing the Simple Regression
+```{r}
 model1 %>%
   ggplot(aes(`Protein (G)`, Calories)) +
   geom_point()
+```
+
+
